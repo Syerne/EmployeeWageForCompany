@@ -2,7 +2,8 @@ package com.employee.wage;
 
 public class EmployeeWageForCompany {
     public static final int EMP_IS_FULL_TIME_PRESENT = 1, EMP_IS_PART_TIME_PRESENT = 2;
-    public static final int FULL_TIME_WORKING_HR = 8, PART_TIME_WORKING_HR = 4,  WORKING_DAY_FOR_MONTH = 20;
+    public static final int FULL_TIME_WORKING_HR = 8, PART_TIME_WORKING_HR = 4,
+                            WORKING_DAY_FOR_MONTH = 20,  TOTAL_WORKING_HRS = 100;
     ;
 
 
@@ -70,15 +71,20 @@ public class EmployeeWageForCompany {
     public int monthlyWage() {
         EmployeeWageForCompany monthlyWageCalculator = new EmployeeWageForCompany();
 
-        int monthlyWage = 0;
+        int monthlyWage = 0, workingHrsPerMonth = 0;
 
         for (int i = 1; i <= WORKING_DAY_FOR_MONTH; i++) {
             System.out.println("Day-" + i);
+            if (workingHrsPerMonth >= TOTAL_WORKING_HRS)
+                break;
+
             int workingHrsPerDay = monthlyWageCalculator.attendanceCheck();
             int dailyWage = monthlyWageCalculator.dailyWage(workingHrsPerDay);
 
+            workingHrsPerMonth += workingHrsPerDay;
             monthlyWage += dailyWage;
         }
+        System.out.println("workingHrsPerMonth : " + workingHrsPerMonth);
         return monthlyWage;
     }
 
