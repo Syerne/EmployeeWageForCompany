@@ -2,17 +2,19 @@ package com.employee.wage;
 
 public class EmployeeWageForCompany {
     public static final int EMP_IS_FULL_TIME_PRESENT = 1, EMP_IS_PART_TIME_PRESENT = 2;
-    public static final int FULL_TIME_WORKING_HR = 8, PART_TIME_WORKING_HR = 4, WAGE_PER_HRS = 20,
-                            WORKING_DAY_FOR_MONTH = 20,  TOTAL_WORKING_HRS = 100;
-    ;
+    public static final int FULL_TIME_WORKING_HR = 8, PART_TIME_WORKING_HR = 4;
+    //WAGE_PER_HRS = 20, WORKING_DAY_FOR_MONTH = 20,  TOTAL_WORKING_HRS = 100;
+    public static int monthlyWage = 0, workingHrsPerMonth = 0, workingHrPerDay;
 
 
     public static void main(String[] args) {
         EmployeeWageForCompany empWage = new EmployeeWageForCompany();
         empWage.welcomeMessage();
-        int monthlyWage = empWage.monthlyWage();
-        System.out.println("MonthlyWage : " + monthlyWage);
-
+        int monthlyWageDmart = empWage.monthlyWage(25,22,176);
+        System.out.println("MonthlyWageDMart : " + monthlyWageDmart);
+        System.out.println("==========================");
+        int monthlyWageReliance = empWage.monthlyWage(20, 26, 208);
+        System.out.println("MonthlyWageReliance : " + monthlyWageReliance);
     }
 
     public void welcomeMessage() {
@@ -59,26 +61,26 @@ public class EmployeeWageForCompany {
         return workingHrPerDay;
     }
 
-    public int dailyWage(int workingHrPerDay) {
+    public int dailyWage(int wagePerHrs, int workingHrPerDay) {
 
 
-        int dailyWage = WAGE_PER_HRS * workingHrPerDay;
+        int dailyWage = wagePerHrs * workingHrPerDay;
         System.out.println("Daily wage: " + dailyWage);
 
         return dailyWage;
     }
-    public int monthlyWage() {
+    public int monthlyWage(int wagePerHrs, int workingDayForMonth, int totalWorkingHrs) {
         EmployeeWageForCompany monthlyWageCalculator = new EmployeeWageForCompany();
 
         int monthlyWage = 0, workingHrsPerMonth = 0;
 
-        for (int i = 1; i <= WORKING_DAY_FOR_MONTH; i++) {
+        for (int i = 1; i <= workingDayForMonth; i++) {
             System.out.println("Day-" + i);
-            if (workingHrsPerMonth >= TOTAL_WORKING_HRS)
+            if (workingHrsPerMonth >= totalWorkingHrs)
                 break;
 
             int workingHrsPerDay = monthlyWageCalculator.attendanceCheck();
-            int dailyWage = monthlyWageCalculator.dailyWage(workingHrsPerDay);
+            int dailyWage = monthlyWageCalculator.dailyWage(wagePerHrs, workingHrsPerDay);
 
             workingHrsPerMonth += workingHrsPerDay;
             monthlyWage += dailyWage;
