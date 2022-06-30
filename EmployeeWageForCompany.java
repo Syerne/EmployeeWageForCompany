@@ -2,7 +2,7 @@ package com.employee.wage;
 
 public class EmployeeWageForCompany {
     public static final int EMP_IS_FULL_TIME_PRESENT = 1, EMP_IS_PART_TIME_PRESENT = 2;
-    public static final int FULL_TIME_WORKING_HR = 8, PART_TIME_WORKING_HR = 4,
+    public static final int FULL_TIME_WORKING_HR = 8, PART_TIME_WORKING_HR = 4, WAGE_PER_HRS = 20,
                             WORKING_DAY_FOR_MONTH = 20,  TOTAL_WORKING_HRS = 100;
     ;
 
@@ -61,7 +61,6 @@ public class EmployeeWageForCompany {
 
     public int dailyWage(int workingHrPerDay) {
 
-        int WAGE_PER_HRS = 20;
 
         int dailyWage = WAGE_PER_HRS * workingHrPerDay;
         System.out.println("Daily wage: " + dailyWage);
