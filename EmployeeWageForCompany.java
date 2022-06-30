@@ -9,7 +9,7 @@ public class EmployeeWageForCompany {
     public static void main(String[] args) {
         EmployeeWageForCompany empWage = new EmployeeWageForCompany();
         empWage.welcomeMessage();
-        int workingHrsPerDay = empWage.attendanceCheck();
+        int workingHrsPerDay = empWage.switchCase();
         empWage.dailyWage(workingHrsPerDay);
 
     }
@@ -33,6 +33,29 @@ public class EmployeeWageForCompany {
             workingHrsPerDay = 0;
         }
         return workingHrsPerDay;
+    }
+    public int switchCase() {
+
+        int workingHrPerDay;
+        int rand = (int) (Math.random() * 3);
+
+        switch (rand) {
+
+            case EMP_IS_FULL_TIME_PRESENT:
+                System.out.println("Employee is full time Present");
+                workingHrPerDay = FULL_TIME_WORKING_HR;
+                break;
+
+            case EMP_IS_PART_TIME_PRESENT:
+                System.out.println("Employee is part time Present");
+                workingHrPerDay = PART_TIME_WORKING_HR;
+                break;
+
+            default:
+                System.out.println("Employee is absent");
+                workingHrPerDay = 0;
+        }
+        return workingHrPerDay;
     }
 
     public int dailyWage(int workingHrPerDay) {
